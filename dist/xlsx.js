@@ -4,7 +4,7 @@
 /*global global, exports, module, require:false, process:false, Buffer:false */
 var XLSX = {};
 (function make_xlsx(XLSX){
-XLSX.version = '0.11.17';
+XLSX.version = '0.11.18';
 var current_codepage = 1200, current_ansi = 1252;
 /*global cptable:true */
 if(typeof module !== "undefined" && typeof require !== 'undefined') {
@@ -12228,6 +12228,26 @@ function write_ws_xml(idx, opts, wb, rels) {
 
 	if(o.length>2) { o[o.length] = ('</worksheet>'); o[1]=o[1].replace("/>",">"); }
 	return o.join("");
+}
+
+function write_ws_xml_view_pane(pane) {
+  var p = {
+    state: pane.state === 'split' || pane.state === 'frozen' || pane.state === 'frozenSplit' ? pane.state : 'split',
+    xSplit: pane.xSplit || 0,
+    ySplit: pane.ySplit || 0
+  };
+
+  // If frozen pane, defaults to the cell in first unfrozen column and first unfrozen row
+  if (p.state !== 'split') {
+    p.topLeftCell = pane.topLeftCell || encode_cell({c: p.xSplit, r: p.ySplit});
+  }
+  else if (pane.topLeftCell !== undefined) {
+    p.topLeftCell = pane.topLeftCell;
+  }
+
+  if (pane.activePane !== undefined) p.activePane = pane.activePane;
+
+  return writextag('pane', null, p);
 }
 
 /* [MS-XLSB] 2.4.718 BrtRowHdr */
