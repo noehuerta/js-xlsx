@@ -10,6 +10,8 @@ declare var it: DescribeIt;
 declare var before:(test:EmptyFunc)=>void;
 declare var cptable: any;
 */
+/* I MADE THIS CHANGE YO! */
+
 var X;
 var modp = './';
 var fs = require('fs'), assert = require('assert');
