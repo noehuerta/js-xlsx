@@ -710,8 +710,8 @@ var XLSX = {};
                 if ((r = fmt.match(/^00,000\.([#0]*0)$/))) {
                     ri = dec(val, r[1].length);
                     return val < 0 ? "-" + write_num_flt(type, fmt, -val) : commaify(flr(val)).replace(/^\d,\d{3}$/, "0$&").replace(/^\d*$/, function ($$) {
-                        return "00," + ($$.length < 3 ? pad0(0, 3 - $$.length) : "") + $$;
-                    }) + "." + pad0(ri, r[1].length);
+                            return "00," + ($$.length < 3 ? pad0(0, 3 - $$.length) : "") + $$;
+                        }) + "." + pad0(ri, r[1].length);
                 }
                 switch (fmt) {
                     case "###,##0.00":
@@ -845,8 +845,8 @@ var XLSX = {};
                 }
                 if ((r = fmt.match(/^00,000\.([#0]*0)$/))) {
                     return val < 0 ? "-" + write_num_int(type, fmt, -val) : commaify("" + val).replace(/^\d,\d{3}$/, "0$&").replace(/^\d*$/, function ($$) {
-                        return "00," + ($$.length < 3 ? pad0(0, 3 - $$.length) : "") + $$;
-                    }) + "." + pad0(0, r[1].length);
+                            return "00," + ($$.length < 3 ? pad0(0, 3 - $$.length) : "") + $$;
+                        }) + "." + pad0(0, r[1].length);
                 }
                 switch (fmt) {
                     case "###,###":
@@ -3212,7 +3212,7 @@ var XLSX = {};
         }
         else z.r = [{ich: 0, ifnt: 0}];
         //if((flags & 2) !== 0) { /* fExtStr */
-        //	/* TODO: phonetic string */
+        //  /* TODO: phonetic string */
         //}
         data.l = start + length;
         return z;
@@ -4773,7 +4773,7 @@ var XLSX = {};
     /* [MS-OLEPS] 2.14 Vector and Array Property Types */
     function parse_VtVector(blob, cb) {
         /* [MS-OLEPS] 2.14.2 VectorHeader */
-        /*	var Length = blob.read_shift(4);
+        /*  var Length = blob.read_shift(4);
          var o = [];
          for(var i = 0; i != Length; ++i) {
          o.push(cb(blob));
@@ -5955,12 +5955,12 @@ var XLSX = {};
 
             blob.l = s + length;
             /* 2.5.272 TxORuns */
-//	var rgTxoRuns = [];
-//	for(var j = 0; j != cbRuns/8-1; ++j) blob.l += 8;
-//	var cchText2 = blob.read_shift(2);
-//	if(cchText2 !== cchText) throw new Error("TxOLastRun mismatch: " + cchText2 + " " + cchText);
-//	blob.l += 6;
-//	if(s + length != blob.l) throw new Error("TxO " + (s + length) + ", at " + blob.l);
+//  var rgTxoRuns = [];
+//  for(var j = 0; j != cbRuns/8-1; ++j) blob.l += 8;
+//  var cchText2 = blob.read_shift(2);
+//  if(cchText2 !== cchText) throw new Error("TxOLastRun mismatch: " + cchText2 + " " + cchText);
+//  blob.l += 6;
+//  if(s + length != blob.l) throw new Error("TxO " + (s + length) + ", at " + blob.l);
             return {t: texts};
         } catch (e) {
             blob.l = s + length;
@@ -10957,8 +10957,8 @@ var XLSX = {};
     })();
 
     var Ptg18 = {
-//	0x19: { n:'PtgList', f:parse_PtgList }, // TODO
-//	0x1D: { n:'PtgSxName', f:parse_PtgSxName }, // TODO
+//  0x19: { n:'PtgList', f:parse_PtgList }, // TODO
+//  0x1D: { n:'PtgSxName', f:parse_PtgSxName }, // TODO
     };
     var Ptg19 = {
         0x01: {n: 'PtgAttrSemi', f: parse_PtgAttrSemi},
