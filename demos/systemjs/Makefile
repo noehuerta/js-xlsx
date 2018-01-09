@@ -1,3 +1,4 @@
 .PHONY: test
 test:
-	node systemjsnode.js
+	cp ../../dist/xlsx.full.min.js .
+	node test.node.js
