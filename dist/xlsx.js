@@ -2245,11 +2245,12 @@ var XLSX = {};
 	}
 
 	var _fs, jszip;
+	_fs = require('fs');
 	/*global JSZip:true */
 	if (typeof JSZip !== 'undefined') jszip = JSZip;
 	if (typeof exports !== 'undefined') {
 		if (typeof module !== 'undefined' && module.exports) {
-			if (typeof jszip === 'undefined') jszip = undefined;
+			if (typeof jszip === 'undefined') jszip = require('./jszip.js');
 			_fs = require('fs');
 		}
 	}
@@ -16749,6 +16750,7 @@ var XLSX = {};
 	}
 
 	function check_wb(wb) {
+		console.log("xlsx check_wb", wb)
 		if (!wb || !wb.SheetNames || !wb.Sheets) throw new Error("Invalid Workbook");
 		check_wb_names(wb.SheetNames);
 		/* TODO: validate workbook */
@@ -27249,7 +27251,10 @@ var XLSX = {};
 			default:
 				throw new Error("Unrecognized type " + o.type);
 		}
+		console.log('xlsx write_zip_type:', wb);
+		console.log('xlsx write_zip_type:', o.file);
 		if (o.type === "file") return _fs.writeFileSync(o.file, z.generate(oopts));
+		console.log('xlsx write_zip_type after: ', wb)
 		return z.generate(oopts);
 	}
 
@@ -27421,6 +27426,7 @@ var XLSX = {};
 		o.type = 'file';
 		o.file = filename;
 		resolve_book_type(o);
+		console.log('xlsx writeFileSync:', wb, o);
 		return writeSync(wb, o);
 	}
 

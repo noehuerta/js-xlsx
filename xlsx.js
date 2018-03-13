@@ -6,7 +6,7 @@
 /*global global, exports, module, require:false, process:false, Buffer:false */
 var XLSX = {};
 (function make_xlsx(XLSX) {
-	XLSX.version = '0.11.19';
+	XLSX.version = '0.11.20';
 	var current_codepage = 1200;
 	/*global cptable:true */
 	if (typeof module !== "undefined" && typeof require !== 'undefined') {
@@ -2249,7 +2249,7 @@ var XLSX = {};
 	if (typeof JSZip !== 'undefined') jszip = JSZip;
 	if (typeof exports !== 'undefined') {
 		if (typeof module !== 'undefined' && module.exports) {
-			if (typeof jszip === 'undefined') jszip = require('./jszip.js');
+			if (typeof jszip == 'undefined') jszip = require('./jszip.js');
 			_fs = require('fs');
 		}
 	}
@@ -16749,6 +16749,7 @@ var XLSX = {};
 	}
 
 	function check_wb(wb) {
+		console.log("xlsx check_wb", wb)
 		if (!wb || !wb.SheetNames || !wb.Sheets) throw new Error("Invalid Workbook");
 		check_wb_names(wb.SheetNames);
 		/* TODO: validate workbook */
